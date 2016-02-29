@@ -1,4 +1,4 @@
-# [HG Plant Sales]
+# HG Plant Sales
 
 HG Plant Sales based on Sage. Sage is a WordPress starter theme based on HTML5 Boilerplate, gulp, Bower, and Bootstrap Sass, that will help you make better themes.
 
