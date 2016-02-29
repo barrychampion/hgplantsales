@@ -6,7 +6,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/roots/sage.git"
+    "url": "git://github.com/barrychampion/hgplantsales.git"
   },
   "bugs": {
     "url": "https://github.com/roots/sage/issues"
