@@ -1,14 +1,31 @@
 {
-  "name": "sage",
-  "homepage": "https://roots.io/sage/",
+  "name": "HG Plant Sales",
+  "homepage": "http://hgplantsales.com/",
   "authors": [
-    "Ben Word <ben@benword.com>"
+    "Barry Champion <barry@barrychampion.com>"
   ],
   "license": "MIT",
   "private": true,
   "dependencies": {
     "tether": "^1.2.0",
-    "bootstrap": "v4.0.0-alpha.2"
+    "bootstrap": "v4.0.0-alpha.2",
+    "font-awesome": "fontawesome#^4.5.0",
+    "instantclick": "^3.1.0",
+    "font-roboto": "^0.0.2",
+    "matchHeight": "matchheight#^0.7.0"
   },
-  "overrides": {}
+  "overrides": {
+    "font-awesome": {
+      "main": [
+        "./scss/font-awesome.scss",
+        "./fonts/*"
+      ]
+    },
+    "font-roboto": {
+      "main": [
+        "./src/styles/roboto.scss",
+        "./dist/fonts/*"
+      ]
+    }
+  }
 }

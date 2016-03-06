@@ -1,0 +1,17 @@
+.jumbotron {
+    background-color: rgba($brand-primary, 0.1);
+    color: rgba($brand-primary, 0.7);
+    .img-thumbnail {
+        padding: 10px;
+        border-radius: 0;
+        margin-bottom: 10px;
+    }
+    .img-ebay {
+        width: 82%;
+        height: auto;
+        margin: 0 auto;
+    }
+    @include media-breakpoint-up(md) {
+        padding: 3rem 2rem
+    }
+}

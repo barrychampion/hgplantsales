@@ -12,66 +12,96 @@
 
 (function($) {
 
-  // Use this variable to set up the common and page specific functions. If you
-  // rename this variable, you will also need to rename the namespace below.
-  var Sage = {
-    // All pages
-    'common': {
-      init: function() {
-        // JavaScript to be fired on all pages
-      },
-      finalize: function() {
-        // JavaScript to be fired on all pages, after page specific JS is fired
-      }
-    },
-    // Home page
-    'home': {
-      init: function() {
-        // JavaScript to be fired on the home page
-      },
-      finalize: function() {
-        // JavaScript to be fired on the home page, after the init JS
-      }
-    },
-    // About us page, note the change from about-us to about_us.
-    'about_us': {
-      init: function() {
-        // JavaScript to be fired on the about us page
-      }
-    }
-  };
+    // Use this variable to set up the common and page specific functions. If you
+    // rename this variable, you will also need to rename the namespace below.
+    var Sage = {
+        // All pages
+        'common': {
+            init: function() {
+                // JavaScript to be fired on all pages
 
-  // The routing fires all common scripts, followed by the page specific scripts.
-  // Add additional events for more control over timing e.g. a finalize event
-  var UTIL = {
-    fire: function(func, funcname, args) {
-      var fire;
-      var namespace = Sage;
-      funcname = (funcname === undefined) ? 'init' : funcname;
-      fire = func !== '';
-      fire = fire && namespace[func];
-      fire = fire && typeof namespace[func][funcname] === 'function';
+                $(window).on('load resize', function() {
+                    var viewportWidth = $(window).width();
+                    if (viewportWidth < 768) {
+                        $('.navbar').addClass('navbar-fixed-top');
+                        $('body').css('padding-top', '54px');
+                    } else {
+                        $('.navbar').removeClass('navbar-fixed-top');
+                        $('body').css('padding-top', '');
+                    }
+                });
 
-      if (fire) {
-        namespace[func][funcname](args);
-      }
-    },
-    loadEvents: function() {
-      // Fire common init JS
-      UTIL.fire('common');
+                $(".card").on('click', function() {
+                    window.location = $(this).find("a").attr("href");
+                    return false;
+                });
 
-      // Fire page-specific init JS, and then finalize JS
-      $.each(document.body.className.replace(/-/g, '_').split(/\s+/), function(i, classnm) {
-        UTIL.fire(classnm);
-        UTIL.fire(classnm, 'finalize');
-      });
+                $('.equal-cards').each(function(i, elem) {
+                    $(elem)
+                        .find('.card') // Only children of this row
+                        .matchHeight({ byRow: true }); // Row detection gets confused so disable it
+                });
 
-      // Fire common finalize JS
-      UTIL.fire('common', 'finalize');
-    }
-  };
+            },
+            finalize: function() {
+                // JavaScript to be fired on all pages, after page specific JS is fired
+            }
+        },
+        // Home page
+        'home': {
+            init: function() {
+                // JavaScript to be fired on the home page
 
-  // Load Events
-  $(document).ready(UTIL.loadEvents);
+            },
+            finalize: function() {
+                // JavaScript to be fired on the home page, after the init JS
+            }
+        },
+        // About us page, note the change from about-us to about_us.
+        'about_us': {
+            init: function() {
+                // JavaScript to be fired on the about us page
+            }
+        },
+        'equipment': {
+            init: function() {
+                // JavaScript to be fired on the about us page
+
+            }
+        }
+    };
+
+    // The routing fires all common scripts, followed by the page specific scripts.
+    // Add additional events for more control over timing e.g. a finalize event
+    var UTIL = {
+        fire: function(func, funcname, args) {
+            var fire;
+            var namespace = Sage;
+            funcname = (funcname === undefined) ? 'init' : funcname;
+            fire = func !== '';
+            fire = fire && namespace[func];
+            fire = fire && typeof namespace[func][funcname] === 'function';
+
+            if (fire) {
+                namespace[func][funcname](args);
+            }
+        },
+        loadEvents: function() {
+            // Fire common init JS
+            UTIL.fire('common');
+
+            // Fire page-specific init JS, and then finalize JS
+            $.each(document.body.className.replace(/-/g, '_').split(/\s+/), function(i, classnm) {
+                UTIL.fire(classnm);
+                UTIL.fire(classnm, 'finalize');
+            });
+
+            // Fire common finalize JS
+            UTIL.fire('common', 'finalize');
+        }
+    };
+
+    // Load Events
+    $(document).ready(UTIL.loadEvents);
 
 })(jQuery); // Fully reference jQuery after this point.
