@@ -2,6 +2,8 @@
   "dependencies": {
     "main.js": {
       "files": [
+      "scripts/jquery.easing-1.3.js",
+      "scripts/jquery.royalslider.min.js",
         "scripts/main.js"
       ],
       "main": true
@@ -22,6 +24,6 @@
     }
   },
   "config": {
-    "devUrl": "http://hgplantsales-barrychampion-1.c9users.io"
+    "devUrl": "http://localhost/hgplantsales/"
   }
 }
